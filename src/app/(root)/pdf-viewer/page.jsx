@@ -8,13 +8,13 @@ import {
     StyleSheet,
     PDFViewer,
 } from "@react-pdf/renderer";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // Styles for the invoice
 const styles = StyleSheet.create({
     viewer: {
-        width: "100%", // Default width
-        height: "100%", // Default height
+        width: "100vw",
+        height: "100vh",
     },
     page: {
         padding: 30,
@@ -69,27 +69,26 @@ const styles = StyleSheet.create({
 });
 
 const InvoiceDocument = () => {
-    const [viewerDimensions, setViewerDimensions] = useState({
-        width: "100%",
-        height: "100%",
-    });
+    const [invoiceData, setInvoiceData] = useState(null);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
-            setViewerDimensions({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
+            const data = localStorage.getItem("invoiceData");
+            if (data) {
+                setInvoiceData(JSON.parse(data));
+            }
         }
     }, []);
-
-    const invoiceData = JSON.parse(localStorage.getItem("invoiceData"));
 
     const calculateTotal = (items) =>
         items.reduce((sum, item) => sum + item.quantity * item.price, 0);
 
+    if (!invoiceData) {
+        return <Text>Loading...</Text>;
+    }
+
     return (
-        <PDFViewer style={{ ...styles.viewer, ...viewerDimensions }}>
+        <PDFViewer style={styles.viewer}>
             <Document>
                 <Page size="A4" style={styles.page}>
                     {/* Header Section */}
