@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import {
     Document,
     Page,
@@ -8,12 +8,13 @@ import {
     StyleSheet,
     PDFViewer,
 } from "@react-pdf/renderer";
+import { useState, useEffect } from "react";
 
 // Styles for the invoice
 const styles = StyleSheet.create({
     viewer: {
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: "100%", // Default width
+        height: "100%", // Default height
     },
     page: {
         padding: 30,
@@ -55,25 +56,40 @@ const styles = StyleSheet.create({
         textAlign: "right",
         marginTop: 10,
     },
-    signature:{
-        display:"flex",
-        flexDirection:'row',
-        gap:"70px",
-        marginTop:"30px"
+    signature: {
+        display: "flex",
+        flexDirection: "row",
+        gap: "70px",
+        marginTop: "30px",
     },
-    upperLine:{
-        borderTop:"1px",
-        borderColor:"black",
-    }
+    upperLine: {
+        borderTop: "1px",
+        borderColor: "black",
+    },
 });
+
 const InvoiceDocument = () => {
+    const [viewerDimensions, setViewerDimensions] = useState({
+        width: "100%",
+        height: "100%",
+    });
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setViewerDimensions({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
+        }
+    }, []);
+
     const invoiceData = JSON.parse(localStorage.getItem("invoiceData"));
-    
 
     const calculateTotal = (items) =>
         items.reduce((sum, item) => sum + item.quantity * item.price, 0);
+
     return (
-        <PDFViewer style={styles.viewer}>
+        <PDFViewer style={{ ...styles.viewer, ...viewerDimensions }}>
             <Document>
                 <Page size="A4" style={styles.page}>
                     {/* Header Section */}
@@ -104,7 +120,7 @@ const InvoiceDocument = () => {
                                 <Text style={styles.cell}>{item.quantity}</Text>
                                 <Text style={styles.cell}>Tk.{item.price}</Text>
                                 <Text style={styles.cell}>
-                                TK. {item.quantity * item.price}
+                                    Tk. {item.quantity * item.price}
                                 </Text>
                             </View>
                         ))}
@@ -118,10 +134,6 @@ const InvoiceDocument = () => {
                         <Text style={styles.upperLine}>Customer Signature</Text>
                         <Text style={styles.upperLine}>Shop Owner Signature</Text>
                     </View>
-
-
-
-                    
                 </Page>
             </Document>
         </PDFViewer>
