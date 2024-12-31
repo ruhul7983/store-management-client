@@ -65,11 +65,11 @@ const InvoiceDetails = () => {
 
                     </div>
                     <div>
-                        <button className="mt-2 px-3 py-2  bg-gray-500 rounded hover:bg-gray-800 transition-all">Add Button</button>
+                        <button className="mt-2 px-3 py-2  bg-gray-500 rounded hover:bg-gray-800 transition-all">Add Item</button>
                     </div>
 
                 </form>
-                <button className="p-3 bg-green-900" onClick={handleShowPDF}>View PDF</button>
+                <button className="p-3 bg-green-900" onClick={handleShowPDF}>Download PDF</button>
             </div>
         </div>
     );
