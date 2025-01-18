@@ -42,9 +42,9 @@ const InvoiceDetails = () => {
 
                 <form onSubmit={handleForm}>
                     <h1 className="text-xl">Invoice to: </h1>
-                    <input type="text" name="clientName" className="px-1 py-2 text-black rounded-sm w-[50%]" id="" placeholder="eg. Ruhul Amin"  required/>
+                    <input type="text" name="clientName" className="px-1 py-2 text-black rounded-sm w-[50%] focus:outline-0 border" id="" placeholder="eg. Ruhul Amin"  required/>
                     <h1 className="text-xl">Invoice Number: </h1>
-                    <input type="text" name="invoiceNumber" className="px-1 py-2 text-black rounded-sm w-[50%]" id="" placeholder="1001" required />
+                    <input type="text" name="invoiceNumber" className="px-1 py-2 text-black rounded-sm w-[50%] focus:outline-0 border" id="" placeholder="1001" required />
 
                     <div className="grid grid-cols-3 gap-x-3 pt-5">
                         <h1 className="">Description: </h1>
@@ -53,9 +53,9 @@ const InvoiceDetails = () => {
 
                     </div>
                     <div className="grid grid-cols-3 gap-x-3">
-                        <input type="text" name="description" id="" className="px-1 py-2 rounded-sm text-black" placeholder="product name" required />
-                        <input type="number" name="quantity" id="" className="px-1 py-2 rounded-sm text-black" placeholder="product quantity" required />
-                        <input type="number" name="price" id="" className="px-1 py-2 rounded-sm text-black" placeholder="product price" required />
+                        <input type="text" name="description" id="" className="px-1 py-2 rounded-sm text-black focus:outline-0 border" placeholder="product name" required />
+                        <input type="number" name="quantity" id="" className="px-1 py-2 rounded-sm text-black focus:outline-0 border" placeholder="product quantity" required />
+                        <input type="number" name="price" id="" className="px-1 py-2 rounded-sm text-black focus:outline-0 border" placeholder="product price" required />
                     </div>
                     {/* Viewing Items */}
                     <div className="py-2">
@@ -65,11 +65,11 @@ const InvoiceDetails = () => {
 
                     </div>
                     <div>
-                        <button className="mt-2 px-3 py-2  bg-gray-500 rounded hover:bg-gray-800 transition-all">Add Item</button>
+                        <button className="mt-2 px-3 py-2  bg-gray-500 rounded hover:bg-gray-800 transition-all text-white">Add Item</button>
                     </div>
 
                 </form>
-                <button className="p-3 bg-green-900" onClick={handleShowPDF}>Download PDF</button>
+                <button className="p-3 bg-green-900 text-white rounded" onClick={handleShowPDF}>Download PDF</button>
             </div>
         </div>
     );
