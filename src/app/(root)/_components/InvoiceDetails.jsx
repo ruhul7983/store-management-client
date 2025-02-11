@@ -55,7 +55,7 @@ const InvoiceDetails = () => {
                     <div className="grid grid-cols-3 gap-x-3">
                         <input type="text" name="description" id="" className="px-1 py-2 rounded-sm text-black focus:outline-0 border" placeholder="product name" required />
                         <input type="number" name="quantity" id="" className="px-1 py-2 rounded-sm text-black focus:outline-0 border" placeholder="product quantity" required />
-                        <input type="number" name="price" id="" className="px-1 py-2 rounded-sm text-black focus:outline-0 border" placeholder="product price" required />
+                        <input type="number" name="price" id="" className="px-1 py-2 rounded-sm text-black focus:outline-0 border" placeholder="product price" required step="0.01" />
                     </div>
                     {/* Viewing Items */}
                     <div className="py-2">
